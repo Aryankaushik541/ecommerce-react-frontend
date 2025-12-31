@@ -1,46 +1,55 @@
+:root {
+  --orb-gold: rgba(212, 175, 55, 0.15);
+  --orb-bronze: rgba(180, 130, 50, 0.1);
+  --orb-shadow: rgba(20, 20, 20, 0.8);
+}
+
 .animated-background {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   z-index: -1;
+  background-color: #050505; /* Deepest Black */
   overflow: hidden;
-  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
 }
 
 .gradient-orb {
   position: absolute;
   border-radius: 50%;
-  filter: blur(80px);
-  opacity: 0.6;
+  filter: blur(80px); /* Soften edges significantly */
+  z-index: 0;
 }
 
+/* Orb 1: The Main Gold Light */
 .orb-1 {
-  width: 500px;
-  height: 500px;
-  background: radial-gradient(circle, #6366f1 0%, transparent 70%);
-  top: -100px;
-  left: -100px;
+  width: 60vw;
+  height: 60vw;
+  background: var(--orb-gold);
+  top: -10%;
+  left: -10%;
 }
 
+/* Orb 2: The Bronze Shadow */
 .orb-2 {
-  width: 600px;
-  height: 600px;
-  background: radial-gradient(circle, #8b5cf6 0%, transparent 70%);
-  bottom: -150px;
-  right: -150px;
+  width: 50vw;
+  height: 50vw;
+  background: var(--orb-bronze);
+  bottom: -10%;
+  right: -10%;
 }
 
+/* Orb 3: The Center Highlight */
 .orb-3 {
-  width: 400px;
-  height: 400px;
-  background: radial-gradient(circle, #ec4899 0%, transparent 70%);
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  width: 40vw;
+  height: 40vw;
+  background: rgba(255, 255, 255, 0.03); /* Very faint white */
+  top: 30%;
+  left: 30%;
 }
 
+/* Mouse Follower */
 .mouse-gradient {
   position: absolute;
   top: 0;
@@ -48,5 +57,19 @@
   width: 100%;
   height: 100%;
   pointer-events: none;
-  transition: background 0.3s ease;
+  z-index: 1;
+  transition: background 0.1s ease;
+}
+
+/* Noise Overlay - Adds a film grain texture */
+.noise-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.03;
+  pointer-events: none;
+  z-index: 2;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
 }

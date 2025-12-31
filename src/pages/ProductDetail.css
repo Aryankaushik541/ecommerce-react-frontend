@@ -1,67 +1,340 @@
-.product-detail {
-  color: white;
+/* Import fonts if not present in main CSS */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Playfair+Display:ital@0;1&family=Montserrat:wght@300;400;500&display=swap');
+
+:root {
+  --royal-gold: #D4AF37;
+  --royal-black: #0F0F0F;
+  --royal-text: #EAEAEA;
 }
 
-.detail-grid {
+.royal-product-page {
+  min-height: 100vh;
+  background-color: var(--royal-black);
+  color: var(--royal-text);
+  padding: 100px 0 50px;
+  position: relative;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.back-link {
+  display: inline-block;
+  color: #888;
+  text-decoration: none;
+  margin-bottom: 30px;
+  font-size: 0.9rem;
+  transition: color 0.3s;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.back-link:hover {
+  color: var(--royal-gold);
+}
+
+/* Grid Layout */
+.royal-showcase {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 40px;
-  padding: 40px;
-  margin: 20px;
+  gap: 60px;
+  align-items: center;
 }
 
-.detail-image {
+/* Left Column: Image Frame */
+.showcase-image-frame {
+  position: relative;
+  padding: 20px;
+  border: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+.product-img {
   width: 100%;
-  height: 500px;
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 12px;
-  overflow: hidden;
+  height: auto;
+  display: block;
+  box-shadow: 0 0 30px rgba(0,0,0,0.8);
 }
 
-.detail-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+/* Decorative Frame Corners */
+.frame-corner {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  border: 2px solid var(--royal-gold);
 }
 
-.detail-info h1 {
-  font-size: 36px;
-  margin-bottom: 12px;
+.frame-corner.top-left {
+  top: -2px;
+  left: -2px;
+  border-bottom: none;
+  border-right: none;
 }
 
-.detail-category {
-  color: var(--primary-color);
-  font-size: 16px;
-  margin-bottom: 20px;
+.frame-corner.bottom-right {
+  bottom: -2px;
+  right: -2px;
+  border-top: none;
+  border-left: none;
 }
 
-.detail-price {
-  font-size: 32px;
-  font-weight: 700;
-  color: var(--accent-color);
-  margin-bottom: 10px;
+/* Right Column: Details */
+.category-tag {
+  color: var(--royal-gold);
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-size: 0.8rem;
+  margin-bottom: 15px;
 }
 
-.original-price {
-  font-size: 20px;
-  color: #94a3b8;
+.product-title {
+  font-family: 'Cinzel', serif;
+  font-size: 3rem;
+  margin: 0 0 20px;
+  color: #fff;
+  line-height: 1.1;
+}
+
+/* Price Styling */
+.price-tag {
+  margin: 30px 0;
+  font-family: 'Playfair Display', serif;
+}
+
+.current-price {
+  font-size: 2.5rem;
+  color: var(--royal-gold);
+  font-style: italic;
+  margin-right: 20px;
+}
+
+.old-price {
+  font-size: 1.5rem;
+  color: #666;
   text-decoration: line-through;
-  margin-bottom: 20px;
 }
 
-.detail-description {
+.product-description {
+  font-size: 1.1rem;
   line-height: 1.8;
-  color: #cbd5e1;
-  margin-bottom: 20px;
-}
-
-.stock-info {
-  color: #86efac;
+  color: #ccc;
   margin-bottom: 30px;
+  border-left: 1px solid var(--royal-gold);
+  padding-left: 20px;
 }
 
-@media (max-width: 768px) {
-  .detail-grid {
+/* Stock Info */
+.inventory-status {
+  margin-bottom: 40px;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.inventory-status .label {
+  color: #666;
+  margin-right: 10px;
+}
+
+.inventory-status .value {
+  color: #fff;
+}
+
+.inventory-status .value.low-stock {
+  color: #e74c3c;
+}
+
+/* --- FLIPKART STYLE BUTTONS (ROYAL THEME) --- */
+.action-buttons-row {
+  display: flex;
+  gap: 20px;
+  margin-top: 40px;
+}
+
+.btn-royal {
+  flex: 1; /* Both buttons take equal width */
+  padding: 18px 0;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  border: none;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.btn-icon {
+  margin-right: 10px;
+  font-size: 1.2rem;
+}
+
+/* "Add to Vault" - Outline style */
+.btn-cart {
+  background: transparent;
+  border: 1px solid var(--royal-gold);
+  color: #fff;
+}
+
+.btn-cart:hover {
+  background: rgba(212, 175, 55, 0.1);
+  box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
+}
+
+/* "Acquire Now" - Solid Gold style */
+.btn-buy {
+  background: linear-gradient(45deg, var(--royal-gold), #b39025);
+  color: #000;
+}
+
+.btn-buy:hover {
+  background: #fff;
+  box-shadow: 0 0 25px rgba(212, 175, 55, 0.5);
+  transform: translateY(-2px);
+}
+
+/* Disabled State */
+.btn-royal:disabled {
+  background: #333;
+  border-color: #444;
+  color: #666;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* --- ROYAL NOTIFICATION POPUP --- */
+.royal-notification {
+  position: fixed;
+  top: 100px; /* Below Navbar */
+  right: 20px;
+  background: rgba(15, 15, 15, 0.95);
+  border: 1px solid var(--royal-gold);
+  padding: 15px 25px;
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+  border-left: 4px solid var(--royal-gold); /* Gold accent bar */
+  min-width: 300px;
+  backdrop-filter: blur(10px);
+}
+
+.notif-content {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  flex: 1;
+}
+
+.notif-logo {
+  font-size: 2rem;
+  color: var(--royal-gold);
+  line-height: 1;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.1); opacity: 0.8; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.notif-text h4 {
+  margin: 0;
+  font-family: 'Cinzel', serif;
+  color: #fff;
+  font-size: 0.9rem;
+}
+
+.notif-text p {
+  margin: 2px 0 0 0;
+  font-size: 0.75rem;
+  color: #aaa;
+}
+
+.notif-btn {
+  background: transparent;
+  color: var(--royal-gold);
+  text-decoration: none;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  font-weight: bold;
+  padding: 5px 10px;
+  border: 1px solid transparent;
+  transition: all 0.3s;
+}
+
+.notif-btn:hover {
+  border-color: var(--royal-gold);
+  color: #fff;
+}
+
+/* Loading Spinner */
+.royal-loading {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--royal-black);
+  color: var(--royal-gold);
+  font-family: 'Cinzel', serif;
+}
+
+.spinner-gold {
+  width: 50px;
+  height: 50px;
+  border: 3px solid transparent;
+  border-top-color: var(--royal-gold);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Responsive: Stack buttons on mobile */
+@media (max-width: 900px) {
+  .royal-showcase {
     grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  
+  .product-title {
+    font-size: 2.2rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .action-buttons-row {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    margin: 0;
+    z-index: 100;
+    gap: 0;
+  }
+  
+  .btn-royal {
+    padding: 20px 0;
+    font-size: 0.9rem;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  .royal-product-page {
+    padding-bottom: 80px; /* Space for fixed buttons */
+  }
+  
+  .royal-notification {
+    top: auto;
+    bottom: 80px; /* Above buttons */
+    right: 10px;
+    left: 10px;
+    min-width: auto;
   }
 }

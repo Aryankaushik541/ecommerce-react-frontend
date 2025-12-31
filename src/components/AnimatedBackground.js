@@ -19,6 +19,7 @@ const AnimatedBackground = () => {
 
   return (
     <div className="animated-background">
+      {/* Orb 1: Deep Gold */}
       <motion.div
         className="gradient-orb orb-1"
         animate={{
@@ -32,6 +33,8 @@ const AnimatedBackground = () => {
           ease: "easeInOut"
         }}
       />
+      
+      {/* Orb 2: Bronze/Darker Tone */}
       <motion.div
         className="gradient-orb orb-2"
         animate={{
@@ -45,6 +48,8 @@ const AnimatedBackground = () => {
           ease: "easeInOut"
         }}
       />
+      
+      {/* Orb 3: Faint Silver/Highlight */}
       <motion.div
         className="gradient-orb orb-3"
         animate={{
@@ -58,12 +63,17 @@ const AnimatedBackground = () => {
           ease: "easeInOut"
         }}
       />
+      
+      {/* Mouse Follower: Subtle Gold Glow */}
       <div
         className="mouse-gradient"
         style={{
-          background: `radial-gradient(circle at ${gradientPosition.x}% ${gradientPosition.y}%, rgba(236, 72, 153, 0.3) 0%, transparent 50%)`
+          background: `radial-gradient(circle at ${gradientPosition.x}% ${gradientPosition.y}%, rgba(212, 175, 55, 0.15) 0%, transparent 40%)`
         }}
       />
+      
+      {/* Overlay Texture to add grain/noise for a premium paper feel */}
+      <div className="noise-overlay"></div>
     </div>
   );
 };

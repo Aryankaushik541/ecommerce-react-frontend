@@ -17,53 +17,77 @@ const Login = () => {
       await login(formData.username, formData.password);
       navigate('/');
     } catch (err) {
-      setError('Invalid credentials. Please try again.');
+      setError('Credentials not recognized.');
     }
   };
 
   return (
-    <div className="auth-page page-content">
+    <div className="royal-auth-page">
+      <div className="royal-bg-overlay"></div>
+      
       <div className="container">
         <motion.div
-          className="auth-card glass-effect"
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.5 }}
+          className="royal-auth-card"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          <h2>Welcome Back</h2>
-          <p className="auth-subtitle">Login to your account</p>
+          <div className="royal-header">
+            <span className="crown-icon">♔</span>
+            <h2>Welcome Back</h2>
+            <div className="mini-divider">
+              <span className="line"></span>
+              <span className="diamond">♦</span>
+              <span className="line"></span>
+            </div>
+            <p className="auth-subtitle">Enter your credentials to access the domain.</p>
+          </div>
           
-          {error && <div className="error-message">{error}</div>}
+          {error && (
+            <motion.div 
+              className="royal-error"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+            >
+              ⚠️ {error}
+            </motion.div>
+          )}
           
-          <form onSubmit={handleSubmit}>
-            <div className="form-group">
-              <label>Username</label>
+          <form onSubmit={handleSubmit} className="royal-form">
+            <div className="royal-input-group">
               <input
                 type="text"
+                placeholder=" "
                 value={formData.username}
                 onChange={(e) => setFormData({ ...formData, username: e.target.value })}
                 required
+                className="royal-input"
               />
+              <label className="royal-label">Username</label>
             </div>
             
-            <div className="form-group">
-              <label>Password</label>
+            <div className="royal-input-group">
               <input
                 type="password"
+                placeholder=" "
                 value={formData.password}
                 onChange={(e) => setFormData({ ...formData, password: e.target.value })}
                 required
+                className="royal-input"
               />
+              <label className="royal-label">Password</label>
             </div>
             
-            <button type="submit" className="btn-primary full-width">
-              Login
+            <button type="submit" className="btn-gold full-width">
+              Access Account
             </button>
           </form>
           
-          <p className="auth-link">
-            Don't have an account? <Link to="/register">Register here</Link>
-          </p>
+          <div className="royal-footer">
+            <p>
+              Not yet a member? <Link to="/register" className="gold-link">Apply for Access</Link>
+            </p>
+          </div>
         </motion.div>
       </div>
     </div>

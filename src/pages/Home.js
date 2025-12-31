@@ -4,51 +4,88 @@ import { motion } from 'framer-motion';
 import './Home.css';
 
 const Home = () => {
+  // Animation variants for a staggered, elegant entrance
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.3,
+        delayChildren: 0.2,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { 
+      opacity: 1, 
+      y: 0, 
+      transition: { duration: 0.8, ease: "easeOut" } 
+    },
+  };
+
   return (
-    <div className="home page-content">
+    <div className="royal-home-page">
+      {/* Background Overlay */}
+      <div className="royal-bg-overlay"></div>
+
       <div className="container">
         <motion.div
-          className="hero-section"
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          className="royal-hero"
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
         >
-          <h1 className="hero-title">
-            Welcome to the Future of Shopping
-          </h1>
-          <p className="hero-subtitle">
-            Discover amazing products with stunning design and seamless experience
-          </p>
-          <div className="hero-buttons">
-            <Link to="/products" className="btn-primary">
-              Explore Products
+          <motion.p variants={itemVariants} className="royal-pre-title">
+            EST. 2025
+          </motion.p>
+          
+          <motion.h1 variants={itemVariants} className="royal-title">
+            The Imperial Collection
+          </motion.h1>
+
+          <motion.div variants={itemVariants} className="royal-divider">
+            <span className="line"></span>
+            <span className="diamond">♦</span>
+            <span className="line"></span>
+          </motion.div>
+
+          <motion.p variants={itemVariants} className="royal-subtitle">
+            Curated luxury for the discerning individual. Experience the pinnacle of design and craftsmanship.
+          </motion.p>
+
+          <motion.div variants={itemVariants} className="royal-buttons">
+            <Link to="/products" className="btn-gold">
+              View Collection
             </Link>
-            <Link to="/register" className="btn-secondary">
-              Get Started
+            <Link to="/register" className="btn-outline">
+              Join the Elite
             </Link>
-          </div>
+          </motion.div>
         </motion.div>
 
         <motion.div
-          className="features-grid"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.4, duration: 0.8 }}
+          className="royal-features"
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1 }}
         >
-          <div className="feature-card glass-effect">
-            <div className="feature-icon">🚀</div>
-            <h3>Fast Delivery</h3>
-            <p>Get your products delivered in record time</p>
+          <div className="luxury-card">
+            <div className="icon-wrapper">⚜️</div>
+            <h3>Concierge Shipping</h3>
+            <p>Swift, insured delivery directly to your estate.</p>
           </div>
-          <div className="feature-card glass-effect">
-            <div className="feature-icon">🔒</div>
-            <h3>Secure Payment</h3>
-            <p>Your transactions are safe and encrypted</p>
+          <div className="luxury-card">
+            <div className="icon-wrapper">🛡️</div>
+            <h3>Sovereign Security</h3>
+            <p>State-of-the-art encryption for your peace of mind.</p>
           </div>
-          <div className="feature-card glass-effect">
-            <div className="feature-icon">⭐</div>
-            <h3>Quality Products</h3>
-            <p>Only the best products for our customers</p>
+          <div className="luxury-card">
+            <div className="icon-wrapper">👑</div>
+            <h3>Exquisite Quality</h3>
+            <p>Hand-picked artifacts of uncompromising standard.</p>
           </div>
         </motion.div>
       </div>

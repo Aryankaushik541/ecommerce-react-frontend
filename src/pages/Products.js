@@ -23,40 +23,82 @@ const Products = () => {
     }
   };
 
+  // Animation variants for the container (stagger effect)
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1
+      }
+    }
+  };
+
+  // Animation for individual items
+  const itemVariants = {
+    hidden: { opacity: 0, y: 30 },
+    show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } }
+  };
+
   if (loading) {
-    return <div className="loading page-content">Loading products...</div>;
+    return (
+      <div className="royal-loading">
+        <div className="spinner-gold"></div>
+      </div>
+    );
   }
 
   return (
-    <div className="products-page page-content">
+    <div className="royal-products-page">
+      <div className="royal-bg-overlay"></div>
+      
       <div className="container">
-        <h1 className="page-title">Our Products</h1>
+        <div className="collection-header">
+          <h1 className="page-title">The Royal Collection</h1>
+          <div className="royal-divider">
+            <span className="line"></span>
+            <span className="diamond">♦</span>
+            <span className="line"></span>
+          </div>
+          <p className="collection-subtitle">Curated artifacts for the modern sovereign.</p>
+        </div>
         
-        <div className="products-grid">
-          {products.map((product, index) => (
+        <motion.div 
+          className="products-grid"
+          variants={containerVariants}
+          initial="hidden"
+          animate="show"
+        >
+          {products.map((product) => (
             <motion.div
               key={product.id}
-              className="product-card glass-effect"
-              initial={{ opacity: 0, y: 50 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1, duration: 0.5 }}
+              className="royal-product-card"
+              variants={itemVariants}
+              whileHover={{ y: -10 }}
             >
-              {product.image && (
-                <div className="product-image">
+              <div className="card-image-container">
+                {product.image ? (
                   <img src={product.image} alt={product.name} />
+                ) : (
+                  <div className="no-image-placeholder">⚜️</div>
+                )}
+                <div className="card-overlay">
+                  <Link to={`/products/${product.slug}`} className="btn-view-piece">
+                    View Piece
+                  </Link>
                 </div>
-              )}
-              <div className="product-info">
+              </div>
+
+              <div className="card-info">
+                <span className="card-category">{product.category_name}</span>
                 <h3>{product.name}</h3>
-                <p className="product-price">${product.final_price}</p>
-                <p className="product-category">{product.category_name}</p>
-                <Link to={`/products/${product.slug}`} className="btn-primary">
-                  View Details
-                </Link>
+                <div className="card-price">
+                  ${product.final_price}
+                </div>
               </div>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </div>
   );

@@ -1,52 +1,168 @@
-.navbar {
+/* Import fonts if not globally imported */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;500&display=swap');
+
+:root {
+  --royal-gold: #D4AF37;
+  --royal-black: #0F0F0F;
+  --royal-text: #EAEAEA;
+}
+
+/* Navbar Container */
+.royal-navbar {
   position: fixed;
   top: 0;
   left: 0;
-  right: 0;
+  width: 100%;
+  height: 80px;
+  background: transparent; /* Starts transparent */
   z-index: 1000;
-  padding: 1rem 2rem;
+  transition: all 0.4s ease;
+  font-family: 'Montserrat', sans-serif;
+  border-bottom: 1px solid transparent;
+}
+
+/* State when user scrolls down */
+.royal-navbar.scrolled {
+  background: rgba(10, 10, 10, 0.95);
+  backdrop-filter: blur(10px);
+  height: 70px; /* Slightly smaller on scroll */
+  border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+  box-shadow: 0 5px 20px rgba(0,0,0,0.5);
 }
 
 .nav-container {
-  max-width: 1200px;
-  margin: 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  height: 100%;
 }
 
-.nav-logo h2 {
-  color: white;
-  font-size: 24px;
+/* Logo Styling */
+.nav-logo {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.crown-symbol {
+  font-size: 2rem;
+  color: var(--royal-gold);
+  line-height: 1;
+}
+
+.brand-name {
+  font-family: 'Cinzel', serif;
+  font-size: 1.5rem;
   font-weight: 700;
+  color: #fff;
+  letter-spacing: 2px;
+  text-transform: uppercase;
 }
 
+/* Menu Links */
 .nav-menu {
   display: flex;
   list-style: none;
-  gap: 2rem;
   align-items: center;
+  gap: 30px;
 }
 
 .nav-menu a {
-  color: white;
   text-decoration: none;
-  font-weight: 500;
+  color: #ccc;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
   transition: color 0.3s;
+  position: relative;
 }
 
-.nav-menu a:hover {
-  color: var(--accent-color);
+.nav-menu a:hover,
+.nav-menu a.active {
+  color: var(--royal-gold);
 }
 
-.user-name {
-  color: white;
-  font-weight: 500;
+/* Underline effect for active links */
+.nav-menu a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 1px;
+  bottom: -5px;
+  left: 0;
+  background-color: var(--royal-gold);
+  transition: width 0.3s ease;
 }
 
+.nav-menu a:hover::after,
+.nav-menu a.active::after {
+  width: 100%;
+}
+
+/* Special Admin Link */
+.admin-link {
+  color: #e74c3c !important; /* Slight red tint to distinguish power */
+}
+
+/* User Greeting */
+.user-greeting {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  color: var(--royal-gold);
+  margin-right: 10px;
+}
+
+/* Buttons */
+.btn-nav-logout {
+  background: transparent;
+  border: 1px solid #444;
+  color: #888;
+  padding: 8px 15px;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  transition: all 0.3s;
+}
+
+.btn-nav-logout:hover {
+  border-color: #fff;
+  color: #fff;
+}
+
+.auth-buttons {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.nav-link-login {
+  /* Inherits standard link style */
+}
+
+.btn-nav-gold {
+  background: var(--royal-gold);
+  color: #000 !important; /* Override link color */
+  padding: 8px 20px;
+  font-weight: 600;
+  border-radius: 2px; /* Slight sharp edges */
+}
+
+.btn-nav-gold:hover {
+  background: #fff;
+  box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+}
+.btn-nav-gold::after {
+  display: none; /* No underline for button */
+}
+
+/* Responsive */
 @media (max-width: 768px) {
   .nav-menu {
-    gap: 1rem;
-    font-size: 14px;
+    display: none; /* For simplicity. A mobile burger menu would be added here */
+  }
+  
+  .nav-logo .brand-name {
+    font-size: 1.2rem;
   }
 }

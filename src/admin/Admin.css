@@ -1,124 +1,324 @@
-.admin-page {
-  color: white;
+/* Import fonts if needed */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;500&display=swap');
+
+:root {
+  --royal-gold: #D4AF37;
+  --royal-black: #0F0F0F;
+  --royal-text: #EAEAEA;
 }
 
+.royal-admin-page {
+  min-height: 100vh;
+  background-color: var(--royal-black);
+  color: var(--royal-text);
+  padding-top: 100px;
+  position: relative;
+  font-family: 'Montserrat', sans-serif;
+}
+
+/* Header */
 .admin-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 30px;
-  padding: 0 20px;
+  text-align: center;
+  margin-bottom: 60px;
 }
 
+.admin-subtitle {
+  color: #888;
+  font-style: italic;
+  font-family: 'Playfair Display', serif;
+}
+
+/* Grid Layout */
 .admin-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 30px;
-  padding: 20px;
+  padding-bottom: 50px;
 }
 
-.admin-card {
-  padding: 40px;
+/* Card Styling */
+.royal-admin-card {
+  background: rgba(20, 20, 20, 0.9);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  padding: 40px 30px;
   text-align: center;
-  transition: transform 0.3s;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.royal-admin-card:hover {
+  background: rgba(30, 30, 30, 0.95);
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.8);
+  border-color: var(--royal-gold);
 }
 
 .admin-icon {
-  font-size: 48px;
+  font-size: 3.5rem;
   margin-bottom: 20px;
+  filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.2));
 }
 
-.admin-card h3 {
-  font-size: 24px;
-  margin-bottom: 12px;
-  color: white;
+.royal-admin-card h3 {
+  font-family: 'Cinzel', serif;
+  color: var(--royal-gold);
+  margin-bottom: 15px;
+  font-size: 1.5rem;
+  text-transform: uppercase;
 }
 
-.admin-card p {
-  color: #cbd5e1;
-  margin-bottom: 20px;
+.royal-admin-card p {
+  color: #aaa;
+  font-size: 0.9rem;
+  margin-bottom: 30px;
+  line-height: 1.6;
 }
 
-.admin-table-container {
-  padding: 30px;
-  margin: 20px;
-  overflow-x: auto;
+/* Button Styles */
+.btn-gold-outline {
+  display: inline-block;
+  padding: 12px 25px;
+  border: 1px solid var(--royal-gold);
+  color: var(--royal-gold);
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 2px;
+  transition: all 0.3s ease;
+  background: transparent;
 }
 
-.admin-table {
+.btn-gold-outline:hover {
+  background: var(--royal-gold);
+  color: #000;
+  box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+}
+
+/* Locked/Coming Soon State */
+.royal-admin-card.locked {
+  opacity: 0.6;
+  border-style: dashed;
+}
+
+.btn-disabled {
+  padding: 12px 25px;
+  border: 1px solid #444;
+  color: #666;
+  background: transparent;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 2px;
+  cursor: not-allowed;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .admin-grid {
+    grid-template-columns: 1fr;
+  }
+}
+/* --- Royal Table Styling --- */
+
+.royal-table-container {
+  background: rgba(20, 20, 20, 0.95);
+  border: 1px solid var(--royal-gold);
+  border-radius: 4px; /* Slight rounding or keep 0 for sharp look */
+  overflow-x: auto; /* Handles small screens */
+  padding: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.royal-table {
   width: 100%;
   border-collapse: collapse;
+  color: #ccc;
+  font-size: 0.9rem;
 }
 
-.admin-table th {
+.royal-table thead th {
   text-align: left;
-  padding: 15px;
-  border-bottom: 2px solid rgba(255, 255, 255, 0.2);
-  color: #e2e8f0;
-  font-weight: 600;
+  padding: 20px 15px;
+  border-bottom: 2px solid rgba(212, 175, 55, 0.3);
+  color: var(--royal-gold);
+  font-family: 'Cinzel', serif;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 0.8rem;
 }
 
-.admin-table td {
-  padding: 15px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  color: #cbd5e1;
+.royal-table tbody td {
+  padding: 20px 15px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-.admin-table tr:hover {
-  background: rgba(255, 255, 255, 0.05);
+.royal-table tbody tr:hover {
+  background: rgba(212, 175, 55, 0.05); /* Subtle gold tint on hover */
 }
 
+/* Specific Columns */
+.order-id {
+  font-family: 'Courier New', monospace;
+  color: #fff;
+}
+
+.gold-text {
+  color: var(--royal-gold);
+  font-weight: bold;
+}
+
+/* Custom Select Dropdown */
+.royal-select {
+  background: #111;
+  color: #fff;
+  border: 1px solid #444;
+  padding: 8px 12px;
+  outline: none;
+  cursor: pointer;
+  font-family: 'Montserrat', sans-serif;
+  transition: all 0.3s;
+}
+
+.royal-select:hover, .royal-select:focus {
+  border-color: var(--royal-gold);
+}
+
+/* Color coding statuses for quick visual reference */
+.royal-select.status-delivered {
+  border-left: 3px solid #27ae60;
+}
+.royal-select.status-pending {
+  border-left: 3px solid #f39c12;
+}
+.royal-select.status-cancelled {
+  border-left: 3px solid #c0392b;
+}
+
+/* Table Buttons */
+.btn-table-action {
+  background: transparent;
+  border: 1px solid #666;
+  color: #888;
+  padding: 5px 15px;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.btn-table-action:hover {
+  border-color: var(--royal-gold);
+  color: var(--royal-gold);
+}
+
+.empty-table-msg {
+  text-align: center;
+  padding: 50px !important;
+  color: #666;
+  font-style: italic;
+}
+/* --- Add to Admin.css --- */
+
+/* Flex header for Title + Button */
+.admin-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 40px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  padding-bottom: 20px;
+}
+
+/* Align divider to left for this specific header */
+.royal-divider.left-align {
+  margin: 10px 0 0 0;
+  justify-content: flex-start;
+  max-width: 200px;
+}
+
+/* Solid Gold Button for Primary Actions */
+.btn-gold-solid {
+  background: var(--royal-gold);
+  color: #000;
+  border: none;
+  padding: 12px 24px;
+  font-family: 'Cinzel', serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
+}
+
+.btn-gold-solid:hover {
+  background: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 0 25px rgba(212, 175, 55, 0.6);
+}
+
+/* Status Badges */
 .status-badge {
-  padding: 6px 12px;
-  border-radius: 20px;
-  font-size: 12px;
-  font-weight: 600;
+  padding: 5px 10px;
+  font-size: 0.7rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  border: 1px solid;
+  display: inline-block;
 }
 
 .status-badge.active {
-  background: rgba(34, 197, 94, 0.2);
-  color: #86efac;
+  color: #2ecc71; /* Emerald Green */
+  border-color: #2ecc71;
+  background: rgba(46, 204, 113, 0.1);
 }
 
 .status-badge.inactive {
-  background: rgba(239, 68, 68, 0.2);
-  color: #fca5a5;
+  color: #7f8c8d; /* Grey */
+  border-color: #7f8c8d;
+  background: rgba(127, 140, 141, 0.1);
 }
 
-.status-select {
-  padding: 8px 12px;
-  border-radius: 6px;
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  color: white;
-  cursor: pointer;
+/* Icon Buttons (Edit/Delete) */
+.actions-cell {
+  display: flex;
+  gap: 15px;
 }
 
-.btn-edit {
-  background: var(--primary-color);
-  color: white;
+.btn-icon-action {
+  background: none;
   border: none;
-  padding: 8px 16px;
-  border-radius: 6px;
+  font-size: 1.2rem;
   cursor: pointer;
-  margin-right: 8px;
-  font-size: 14px;
+  transition: transform 0.2s, color 0.2s;
+  padding: 5px;
 }
 
-.btn-delete {
-  background: #ef4444;
-  color: white;
-  border: none;
-  padding: 8px 16px;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 14px;
+.btn-icon-action.edit {
+  color: #aaa;
+}
+.btn-icon-action.edit:hover {
+  color: var(--royal-gold);
+  transform: scale(1.2);
 }
 
-.btn-edit:hover {
-  opacity: 0.9;
+.btn-icon-action.delete {
+  color: #aaa;
+}
+.btn-icon-action.delete:hover {
+  color: #e74c3c; /* Red */
+  transform: scale(1.2);
 }
 
-.btn-delete:hover {
-  opacity: 0.9;
+.product-name-cell {
+  color: #fff;
+  font-weight: 500;
+}
+
+/* Responsive adjustment */
+@media (max-width: 768px) {
+  .admin-header-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
 }
